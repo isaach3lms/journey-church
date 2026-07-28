@@ -12,135 +12,111 @@
 <meta property="og:description" content="Questions, prayer requests, or just want to say hello? Leave us a message and someone from The Journey Church team will be in touch.">
 <meta property="og:image" content="https://thejourneychurchsemo.com/assets/img/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#14200C">
+<meta name="theme-color" content="#3A4522">
 <link rel="icon" href="/assets/img/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/fonts.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-
 <header class="nav nav--solid" data-nav>
   <div class="wrap nav__in">
-    <a class="nav__brand" href="/">
-      <img src="/assets/img/badge-light.png" alt="" width="500" height="500">
-      <span>The Journey Church</span>
+    <a class="nav__brand" href="/" aria-label="The Journey Church, home">
+      <img src="/assets/img/logo-white.png" alt="The Journey Church" width="707" height="353">
     </a>
     <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-links">Menu</button>
     <ul class="nav__links" id="nav-links" data-nav-links>
-      <li><a href="/">Home</a></li>
-      <li><a href="/our-pastors/">Our Pastors</a></li>
-      <li><a href="/what-we-believe/">What We Believe</a></li>
-      <li><a href="/serve-with-us/">Serve</a></li>
-      <li><a href="/connect/" aria-current="page">Connect</a></li>
-      <li><a class="btn btn--fill" href="/give/">Give</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/our-pastors/">Our Pastors</a></li>
+        <li><a href="/what-we-believe/">What We Believe</a></li>
+        <li><a href="/serve-with-us/">Serve</a></li>
+        <li><a href="/connect/" aria-current="page">Connect</a></li>
+        <li><a class="btn" href="/give/">Give</a></li>
     </ul>
   </div>
 </header>
-
 <main id="main">
-
   <section class="phead">
-    <div class="wrap">
-      <p class="eyebrow">Contact</p>
-      <h1 class="display d1" style="font-size:clamp(2.5rem,6.5vw,4.6rem)">Connect with us</h1>
-      <p class="lede">Leave us a message and someone from our team will be in touch shortly.</p>
+    <img class="phead__bg" src="/assets/img/crowd-hillside.webp" alt="" width="1400" height="935">
+    <div class="wrap"><h1 class="h-page">Connect With Us</h1></div>
+  </section>
+
+  <section class="section center">
+    <div class="narrow">
+      <h2 class="h-sec">How Can We Help?</h2>
+      <p class="lede measure" style="margin-top:1.25rem">Leave us a message and someone from our team will be in touch shortly.</p>
+      <form class="form" data-form data-success="Message received. Someone from our team will be in touch shortly.">
+        <input type="hidden" name="access_key" value="">
+        <input type="hidden" name="subject" value="Contact form - The Journey Church">
+        <input type="hidden" name="from_name" value="thejourneychurchsemo.com">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+        <div class="field">
+          <label for="c-name">Full Name *</label>
+          <input id="c-name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required>
+          <span class="hint">Enter your full name.</span>
+        </div>
+        <div class="field"><label for="c-email">Enter your email *</label><input id="c-email" name="email" type="email" placeholder="hello@gmail.com" autocomplete="email" required></div>
+        <div class="field"><label for="c-phone">Enter your number</label><input id="c-phone" name="phone" type="tel" placeholder="xxx-xxx-xxxx" autocomplete="tel"></div>
+        <div class="field">
+          <label for="c-topic">What is this about?</label>
+          <select id="c-topic" name="topic">
+            <option>General question</option><option>Prayer request</option>
+            <option>Joining the launch team</option><option>Giving</option>
+            <option>Meeting the pastors</option><option>Something else</option>
+          </select>
+        </div>
+        <div class="field"><label for="c-msg">Enter your message *</label><textarea id="c-msg" name="message" placeholder="Enter your text" required></textarea></div>
+        <button class="btn btn--olive" type="submit">Submit</button>
+        <p class="form__note">We reply to every message personally.</p>
+        <div class="form__msg" aria-live="polite"></div>
+      </form>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap trail">
-
-      <div class="wp">
-        <p class="wp__label"><b>Marker 01</b> &nbsp;/&nbsp; Send a message</p>
-        <div class="split split--wide-left">
-          <div>
-            <form class="form" data-form data-success="Message received. Someone from our team will be in touch shortly." style="margin-top:0">
-              <input type="hidden" name="access_key" value="">
-              <input type="hidden" name="subject" value="Contact form - The Journey Church">
-              <input type="hidden" name="from_name" value="thejourneychurchsemo.com">
-              <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
-              <div class="row row--2">
-                <div class="field"><label for="c-name">Full name</label><input id="c-name" name="name" type="text" autocomplete="name" required></div>
-                <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
-              </div>
-              <div class="row row--2">
-                <div class="field"><label for="c-phone">Phone (optional)</label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
-                <div class="field">
-                  <label for="c-topic">What is this about?</label>
-                  <select id="c-topic" name="topic">
-                    <option>General question</option>
-                    <option>Prayer request</option>
-                    <option>Joining the launch team</option>
-                    <option>Giving</option>
-                    <option>Meeting the pastors</option>
-                    <option>Something else</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
-              <button class="btn btn--fill" type="submit">Send message</button>
-              <p class="form__note">We reply to every message personally.</p>
-              <div class="form__msg" aria-live="polite"></div>
-            </form>
-          </div>
-          <div>
-            <h2 class="display d3">Other ways to reach us</h2>
-            <div class="prose" style="margin-top:1.25rem">
-              <p><span class="mono">By mail</span><br>The Journey Church<br>P.O. Box 28<br>Jackson, MO 63755</p>
-              <p><span class="mono">Follow along</span></p>
-              <ul class="linklist">
-                <li><a href="https://www.instagram.com/thejourneychurch.semo" rel="noopener">Instagram</a></li>
-                <li><a href="https://www.facebook.com/profile.php?id=61590643469654" rel="noopener">Facebook</a></li>
-                <li><a href="https://www.youtube.com/@thejourneychurchsemo" rel="noopener">YouTube</a></li>
-              </ul>
-              <p><span class="mono">Launch</span><br>Fall 2026, Jackson, Missouri</p>
-            </div>
-            <figure class="media-band media-band--tall">
-              <img src="/assets/img/connect-welcome.webp" alt="Two men greeting each other before a Journey Church gathering" loading="lazy" width="900" height="1347">
-            </figure>
-          </div>
+  <section class="section" style="padding-top:0">
+    <div class="wrap split">
+      <div class="split__media split__media--wide">
+        <img src="/assets/img/welcome-hug.webp" alt="Two people greeting each other before a Journey Church gathering" loading="lazy" width="900" height="1347">
+      </div>
+      <div>
+        <h2 class="h-sec">Other Ways To Reach Us</h2>
+        <div class="info">
+          <div><h3>By Mail</h3><p>The Journey Church<br>P.O. Box 28<br>Jackson, MO 63755</p></div>
+          <div><h3>Follow Along</h3>
+            <p><a href="https://www.instagram.com/thejourneychurch.semo" rel="noopener">Instagram</a><br>
+               <a href="https://www.facebook.com/profile.php?id=61590643469654" rel="noopener">Facebook</a><br>
+               <a href="https://www.youtube.com/@thejourneychurchsemo" rel="noopener">YouTube</a></p></div>
+          <div><h3>Launch</h3><p>Fall 2026, Jackson, Missouri</p></div>
         </div>
       </div>
-
     </div>
   </section>
-
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div class="foot__grid">
-      <div class="foot__mark">
-        <img src="/assets/img/wordmark-light.png" alt="The Journey Church" width="1264" height="197" loading="lazy">
-        <p>An Assemblies of God church launching Fall 2026 in Jackson, Missouri.</p>
-        <p>P.O. Box 28, Jackson, MO 63755</p>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="/our-pastors/">Our pastors</a></li>
-          <li><a href="/what-we-believe/">What we believe</a></li>
-          <li><a href="/serve-with-us/">Serve with us</a></li>
-          <li><a href="/connect/">Connect</a></li>
-          <li><a href="/give/">Give</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <ul>
-          <li><a href="https://www.instagram.com/thejourneychurch.semo" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=61590643469654" rel="noopener">Facebook</a></li>
-          <li><a href="https://www.youtube.com/@thejourneychurchsemo" rel="noopener">YouTube</a></li>
-        </ul>
-      </div>
+    <div class="foot__partners">
+      <p>In Partnership With</p>
+      <img src="/assets/img/partnership.png" alt="Assemblies of God and Church Multiplication Network" width="1264" height="197" loading="lazy">
     </div>
+    <div class="foot__social">
+      <a href="https://www.instagram.com/thejourneychurch.semo" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84ZM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4Z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61590643469654" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07Z"/></svg></a>
+      <a href="https://www.youtube.com/@thejourneychurchsemo" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg></a>
+    </div>
+    <ul class="foot__nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/our-pastors/">Our Pastors</a></li>
+      <li><a href="/what-we-believe/">What We Believe</a></li>
+      <li><a href="/serve-with-us/">Serve</a></li>
+      <li><a href="/connect/">Connect</a></li>
+      <li><a href="/give/">Giving</a></li>
+    </ul>
     <div class="foot__base">
-      <span>&copy; 2026 The Journey Church</span>
-      <span>37.3800&deg; N, 89.6581&deg; W</span>
+      <p>&copy; 2026 The Journey Church</p>
+      <p>P.O. Box 28, Jackson, MO 63755</p>
     </div>
   </div>
 </footer>

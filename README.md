@@ -1,67 +1,65 @@
 # The Journey Church
 
-Static website for The Journey Church, Jackson, Missouri. Built to deploy on Render from Git.
-
-No build step. No framework. No dependencies. Push to Git, Render publishes the folder.
+Rebuild of thejourneychurchsemo.com, matched to the existing Church Co design, deployable from Git to Render as a Node web service.
 
 ---
 
 ## Deploy to Render
 
-**First time**
+| Field | Value |
+|---|---|
+| Runtime | **Node** |
+| Build Command | `npm install` |
+| Start Command | `npm start` |
+| Branch | `main` |
+| Root Directory | *(blank)* |
+
+`render.yaml` sets all of it if you deploy via **New -> Blueprint**.
+
+`render.yaml`, `package.json`, `server.js`, and `index.html` must sit at the **repo root**. Run `ls` to confirm before pushing.
 
 ```bash
-git init
-git add .
-git commit -m "Initial site"
+git init && git add . && git commit -m "Initial site"
 git branch -M main
 git remote add origin https://github.com/YOUR-USERNAME/journey-church.git
 git push -u origin main
 ```
 
-Then in Render: **New → Static Site → connect the repo**.
+Run locally with `npm install && npm start` at http://localhost:10000.
 
-| Setting | Value |
-|---|---|
-| Build command | *(leave blank)* |
-| Publish directory | `.` |
-| Branch | `main` |
+### The free plan sleeps
 
-Render also reads `render.yaml` automatically if you deploy via **New → Blueprint**, which applies the redirects and cache headers below without any manual setup. Blueprint is the better path.
-
-**Every change after that**
-
-```bash
-git add .
-git commit -m "What changed"
-git push
-```
-
-Render redeploys in about 30 seconds.
+A free Render web service spins down after about 15 minutes idle, and the next visitor waits roughly 50 seconds. Either set `plan: starter` in `render.yaml` for $7/mo, or point a free uptime pinger at the site every 10 minutes.
 
 ---
 
 ## Before you go live
 
-### 1. Connect the forms (required)
+Both forms post to Web3Forms, which is free to 250 submissions a month and needs no server.
 
-Render static sites cannot process form submissions. Both forms post to Web3Forms, which is free up to 250 submissions per month and needs no account or server.
+1. Get an access key at web3forms.com with the church email
+2. Paste it into `assets/js/site.js`, line 12
+3. Commit and push
 
-1. Go to web3forms.com
-2. Enter the church email address, get an access key
-3. Open `assets/js/site.js`, line 12
-4. Replace `PASTE-YOUR-WEB3FORMS-ACCESS-KEY-HERE` with the key
-5. Commit and push
+Until then the forms show a clear message instead of failing silently.
 
-Until that key is in, both forms display a clear message instead of failing silently. Submissions arrive as email to whatever address you registered.
+---
 
-Forms affected: the homepage signup, the launch team form on `/serve-with-us/`, and the contact form on `/connect/`.
+## Design system
 
-### 2. Point the domain
+Colours and type were sampled from the live site, not invented. Everything lives in the `:root` block at the top of `assets/css/site.css`:
 
-In Render: Settings → Custom Domains → add `thejourneychurchsemo.com` and `www.thejourneychurchsemo.com`. Render gives you DNS records. Update them at your registrar, wait for the SSL certificate to issue, then cancel The Church Co.
+```css
+--olive:#3A4522;      /* page header bands, olive sections, accordions */
+--ink:#0F172A;        /* all text, card borders                        */
+--amber:#F7B83C;      /* CTA buttons, accent words on dark             */
+--amber-text:#BE8400; /* accent words on white (contrast-safe)         */
+--black:#110D0D;      /* footer                                        */
+```
 
-Do not cancel Church Co before the domain resolves to Render. All images now live in this repo, so nothing breaks when the old host goes away, but the DNS cutover should come first.
+Typeface is **Inter**, the same family the live site loads, self-hosted as a 32 KB variable font.
+
+**Why two ambers.** The brand gold on white measures 1.77:1, below the accessibility floor. Dark sections use the full-strength `--amber`; white sections use `--amber-text`, which reads as the same gold and passes. The swap is automatic, so just use `class="amber"` and the right one applies.
 
 ---
 
@@ -70,103 +68,70 @@ Do not cancel Church Co before the domain resolves to Render. All images now liv
 | To change | Edit |
 |---|---|
 | Homepage | `index.html` |
-| Pastors page | `our-pastors/index.html` |
-| Statement of faith | `what-we-believe/index.html` |
-| Launch team page | `serve-with-us/index.html` |
-| Contact page | `connect/index.html` |
-| Giving page | `give/index.html` |
-| Homepage gallery | `index.html`, the `.gallery` block at Marker 04 |
-| Brand colors | `assets/css/site.css`, the `:root` block at the top |
-| Nav and footer | Each page has its own copy. Change all six. |
+| Pastors | `our-pastors/index.html` |
+| Beliefs | `what-we-believe/index.html` |
+| Launch team | `serve-with-us/index.html` |
+| Contact | `connect/index.html` |
+| Giving | `give/index.html` |
+| Colours | `assets/css/site.css`, `:root` block |
+| Nav and footer | Each page has its own copy. Change all seven. |
 
-Text lives directly in the HTML. Find the sentence, change it, commit, push.
+### Ministry cards
 
-### Brand colors
+Five cards appear on both the homepage and the serve page, in the `.cards` block. Each is a `<figure>`-style `<article class="card">` with an image and a label. Swap `src`, `alt`, `width`, and `height` to change one.
 
-All colors derive from the church badge and sit in one place at the top of `assets/css/site.css`:
+Two need real photos: **Community Outreach** currently uses a volunteer shot, and **Sports** uses the band shell wide shot. The originals on the live site are a different outreach photo and an aerial of the Jackson football stadium. Drop those into `assets/img/` as `card-outreach.webp` and `card-sports.webp` and they replace automatically.
 
-```css
---timber:#14200C;   /* deepest olive, dark backgrounds  */
---olive:#3A4922;    /* badge olive                      */
---sand:#F3EEE1;     /* paper                            */
---blaze:#FAB93B;    /* badge amber                      */
---blaze-deep:#8C5A0C; /* amber on light backgrounds     */
-```
+### Welcome video
 
-Change those five values and the whole site follows. `--blaze-deep` exists because the badge amber does not have enough contrast on the sand background for small text, so light surfaces use the deeper bronze instead.
-
-### Adding a photo
-
-Drop the file in `assets/img/`, then reference it as `/assets/img/filename.webp`. Always include an `alt` attribute describing the image.
-
-### Swapping a gallery photo
-
-The homepage gallery at Marker 04 holds seven photos. Each is a `<figure>` inside `.gallery`. To change one, replace the `src`, `alt`, `width`, and `height`. The first figure carries `class="wide"` and should stay a landscape image; the rest are portrait and get cropped to 3:4.
-
-Photos should be exported as `.webp`: about 1400px wide for the landscape shot, 900px for portraits, quality 80.
-
-### Spare images
-
-`hero-path.webp` (downtown Jackson community dinner), `badge.png`, and `wordmark.png` sit in `assets/img/` unused. The badge and wordmark are the dark-ink versions for light backgrounds if you ever need them.
+The homepage embeds YouTube video `xCGj8ZgsawA` through youtube-nocookie.com. To change it, replace the ID in the `.video` iframe in `index.html`.
 
 ---
 
 ## What is in here
 
 ```
+server.js                Express: routing, redirects, gzip, 404
+package.json             Dependencies and npm start
 index.html               Homepage
 our-pastors/             Brandon and Whitney
 what-we-believe/         Statement of faith, 9 beliefs
-serve-with-us/           Launch team signup
+serve-with-us/           Ministries and launch team form
 connect/                 Contact form
 give/                    Reach Network and mail
-404.html                 Not found
+404.html
 
 assets/css/site.css      All styling. Tokens at the top.
-assets/css/fonts.css     Self-hosted font declarations
-assets/fonts/            5 woff2 files, Latin subset, 376K total
-assets/js/site.js        Nav, scroll markers, form handling
-assets/img/              All photos, logo variants, favicons
+assets/css/fonts.css     Inter font-face
+assets/fonts/            inter-var.woff2, 32K
+assets/js/site.js        Nav, form handling
+assets/img/              Photos, logos, favicons
 
-render.yaml              Render blueprint: redirects, cache headers
-robots.txt               Search engine directives
-sitemap.xml              Page index for Google
+render.yaml              Render blueprint
+robots.txt / sitemap.xml
 ```
 
 ---
 
 ## URL redirects
 
-`render.yaml` preserves the URLs Google already indexed from the Church Co site:
+`server.js` 301s the URLs Google indexed from the Church Co site:
 
 | Old | New |
 |---|---|
-| `/our-mission--beliefs` | `/what-we-believe` |
-| `/members-portal` | `/connect` |
-| `/form/contact` | `/connect` |
-| `/form/launch-team-form` | `/serve-with-us` |
+| `/our-mission--beliefs` | `/what-we-believe/` |
+| `/members-portal` | `/connect/` |
+| `/form/contact` | `/connect/` |
+| `/form/launch-team-form` | `/serve-with-us/` |
 
 ---
 
 ## Technical notes
 
-**Fonts are self-hosted.** Bricolage Grotesque (headings), Newsreader (body), Space Mono (labels and coordinates). No request to Google, faster load, no third-party tracking. Subset to Latin with common punctuation, 376K total, with the two critical faces preloaded.
+**Self-hosted.** No Church Co CDN, no Google Fonts request. Inter is subset to Latin at 32 KB.
 
-**Images are self-hosted.** Nothing loads from The Church Co's CDN. Photos from the band shell gathering were converted to WebP and sized for their display slot. Total image payload is about 2.1 MB across the whole site, and no single page loads more than roughly 900 KB of it.
+**Server.** Express with gzip. HTML revalidates every request so edits appear immediately, fonts cache a year, images and CSS cache a week. Source files are blocked from being served.
 
-**Accessibility.** Verified with automated checks at 320px, 390px, 768px, and 1440px:
+**Accessibility.** Verified at 320, 390, 768, and 1440 px: no horizontal overflow, zero WCAG AA contrast failures, every tap target at least 44 px, visible keyboard focus, skip link, correct heading order, alt text on every image, and `prefers-reduced-motion` respected.
 
-- No horizontal overflow on any page at any width
-- All text meets WCAG AA contrast (4.5:1 body, 3:1 large)
-- Every tap target at least 44px tall on mobile
-- Visible keyboard focus, skip-to-content link
-- `prefers-reduced-motion` respected
-- Proper heading order, alt text on every image
-
-**Browser storage is not used.** Nothing is stored client side.
-
----
-
-## If you want a visual editor later
-
-Right now editing means committing to Git. That is fine for six pages of stable content. Once you launch and start posting sermons or events weekly, add Decap CMS on top of this same repo. It gives a login page and a WYSIWYG editor that writes commits behind the scenes. No hosting change, no rebuild.
+**No browser storage.** Nothing is stored client side.

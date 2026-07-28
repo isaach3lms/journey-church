@@ -1,33 +1,18 @@
-# Render Blueprint for The Journey Church
-# Docs: https://render.com/docs/blueprint-spec
+# Render Blueprint for The Journey Church (Web Service)
+# Deploy with:  Render Dashboard -> New -> Blueprint
+# Or manually:  New -> Web Service, Build `npm install`, Start `npm start`
 services:
   - type: web
+    runtime: node
     name: journey-church
-    runtime: static
-    buildCommand: ""
-    staticPublishPath: .
-    pullRequestPreviewsEnabled: true
-    routes:
-      # Preserve URLs indexed from the old Church Co site
-      - type: redirect
-        source: /our-mission--beliefs
-        destination: /what-we-believe
-      - type: redirect
-        source: /members-portal
-        destination: /connect
-      - type: redirect
-        source: /form/contact
-        destination: /connect
-      - type: redirect
-        source: /form/launch-team-form
-        destination: /serve-with-us
-    headers:
-      - path: /assets/*
-        name: Cache-Control
-        value: public, max-age=31536000, immutable
-      - path: /*
-        name: X-Content-Type-Options
-        value: nosniff
-      - path: /*
-        name: Referrer-Policy
-        value: strict-origin-when-cross-origin
+    plan: free              # change to "starter" ($7/mo) to stop cold starts
+    region: ohio            # closest Render region to Missouri
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    previews:
+      generation: automatic
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
