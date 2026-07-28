@@ -1,0 +1,33 @@
+# Render Blueprint for The Journey Church
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: journey-church
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: true
+    routes:
+      # Preserve URLs indexed from the old Church Co site
+      - type: redirect
+        source: /our-mission--beliefs
+        destination: /what-we-believe
+      - type: redirect
+        source: /members-portal
+        destination: /connect
+      - type: redirect
+        source: /form/contact
+        destination: /connect
+      - type: redirect
+        source: /form/launch-team-form
+        destination: /serve-with-us
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
