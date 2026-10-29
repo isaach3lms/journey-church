@@ -124,11 +124,11 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .hero .tlink:hover,.oband .tlink:hover,.cta .tlink:hover{border-bottom-color:var(--amber)}
 
 /* --- Nav ------------------------------------------------------------------ */
-.nav{position:fixed;inset:0 0 auto;z-index:100;height:var(--nav-h);display:flex;align-items:center}
-/* Two states, both pinned to the top:
-   at rest  - transparent with a soft gradient fading into the hero
-   scrolled - a defined translucent bar with a crisp bottom edge, so it
-              never smears a long gradient across page content          */
+.nav{position:absolute;inset:0 0 auto;z-index:100;height:var(--nav-h);
+  display:flex;align-items:center}
+/* The header sits at the top of the page and scrolls away with the content.
+   It is not fixed, so it does not follow the reader down the page.
+   A soft gradient keeps the white logo and links legible over the hero.    */
 .nav::before{
   content:"";position:absolute;inset:0;height:calc(var(--nav-h) * 1.9);
   background:linear-gradient(to bottom,
@@ -136,20 +136,9 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
     rgba(14,19,8,.62) 52%,
     rgba(14,19,8,0) 100%);
   pointer-events:none;
-  transition:height .25s ease,background .25s ease,box-shadow .25s ease;
 }
-.nav.is-stuck::before{
-  height:100%;
-  background:rgba(22,29,13,.93);
-  -webkit-backdrop-filter:saturate(140%) blur(10px);
-  backdrop-filter:saturate(140%) blur(10px);
-  box-shadow:0 1px 0 rgba(255,255,255,.10),0 10px 26px rgba(0,0,0,.26);
-}
-/* Interior pages start below a dark header band, so they are stuck from 0 */
-.nav--solid::before{height:100%;background:rgba(22,29,13,.93);
-  -webkit-backdrop-filter:saturate(140%) blur(10px);
-  backdrop-filter:saturate(140%) blur(10px);
-  box-shadow:0 1px 0 rgba(255,255,255,.10),0 10px 26px rgba(0,0,0,.26)}
+/* Interior pages open on a solid olive band, so the scrim is a flat bar */
+.nav--solid::before{height:100%;background:rgba(22,29,13,.55)}
 .nav__in{display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative;z-index:1}
 .nav__brand{display:block;flex:0 0 auto}
 .nav__brand img{width:auto;height:54px}
@@ -183,6 +172,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
     border-radius:999px 0 0 999px}
   .nav__account a{padding:.8rem .25rem;border-bottom:none;justify-content:flex-start}
   .nav.is-menu-open::before{height:100%;background:rgba(22,29,13,.97)}
+  .nav__links{box-shadow:0 18px 30px rgba(0,0,0,.3)}
 }
 
 /* --- Hero ----------------------------------------------------------------- */

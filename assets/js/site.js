@@ -19,14 +19,19 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
   var toggle = document.querySelector("[data-nav-toggle]");
   var links = document.querySelector("[data-nav-links]");
 
-  /* The nav is always pinned. Past the fold it tightens into a defined bar
-     so the gradient never smears across page content. */
-  if (nav && !nav.classList.contains("nav--solid")) {
-    var onScroll = function () {
-      nav.classList.toggle("is-stuck", window.scrollY > 24);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+  /* The header scrolls away with the page, so there is no scroll state
+     to track. Close the mobile menu if the header leaves the viewport. */
+  if (nav && links) {
+    window.addEventListener("scroll", function () {
+      if (links.classList.contains("is-open") && window.scrollY > 10) {
+        links.classList.remove("is-open");
+        nav.classList.remove("is-menu-open");
+        if (toggle) {
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.textContent = "Menu";
+        }
+      }
+    }, { passive: true });
   }
 
   if (toggle && links) {
