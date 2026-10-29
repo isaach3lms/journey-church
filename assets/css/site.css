@@ -139,17 +139,13 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   text-decoration:none;color:var(--white);font-weight:700;font-size:.94rem;transition:color .18s ease}
 .nav__links a:hover,.nav__links a[aria-current="page"]:not(.btn){color:var(--amber)}
 .nav__links a.btn{--cut:15px;margin-left:.75rem;min-height:44px;
+  text-transform:none;letter-spacing:-.005em;font-size:.94rem;font-weight:700;
   padding:.6rem calc(1rem + var(--cut)) .6rem 1.35rem;color:var(--ink)}
 .nav__links a.btn:hover{color:var(--ink)}
-/* Account icon. Label is screen-reader only on desktop, visible in the mobile menu. */
-.nav__account a{padding:0 0 0 .55rem;min-width:44px;min-height:44px;gap:.7rem}
-.nav__account a:hover{color:var(--white)}
+/* Account icon. Icon only; the link is named for screen readers via aria-label. */
+.nav__account a{padding:0 0 0 .55rem;min-width:44px;min-height:44px;justify-content:center}
 .nav__account svg{flex:0 0 auto;display:block;transition:opacity .18s ease}
 .nav__account a:hover svg{opacity:.82}
-.nav__account span{
-  position:absolute;width:1px;height:1px;overflow:hidden;
-  clip-path:inset(50%);white-space:nowrap;
-}
 
 .nav__toggle{display:none;background:transparent;border:2px solid rgba(255,255,255,.55);
   border-radius:999px;color:var(--white);padding:.6rem 1.1rem;font-weight:700;font-size:.9rem;min-height:44px}
@@ -166,9 +162,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   .nav__links li:last-child a{border-bottom:none}
   .nav__links a.btn{--cut:18px;margin:1rem 0 0;justify-content:center;
     border-radius:999px 0 0 999px}
-  .nav__account a{padding:.8rem .25rem;border-bottom:none}
-  .nav__account span{position:static;width:auto;height:auto;clip-path:none;
-    font-size:1.02rem;font-weight:700}
+  .nav__account a{padding:.8rem .25rem;border-bottom:none;justify-content:flex-start}
   .nav.is-menu-open{background:var(--olive)}
 }
 
