@@ -19,13 +19,8 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
   var toggle = document.querySelector("[data-nav-toggle]");
   var links = document.querySelector("[data-nav-links]");
 
-  if (nav && !nav.classList.contains("nav--solid")) {
-    var onScroll = function () {
-      nav.classList.toggle("is-solid", window.scrollY > 40);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
+  /* The nav keeps its gradient scrim at all scroll positions,
+     so there is no solid state to toggle. */
 
   if (toggle && links) {
     toggle.addEventListener("click", function () {
