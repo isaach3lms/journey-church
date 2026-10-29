@@ -69,6 +69,43 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
     }
   }
 
+  /* --- "New Here?" slide-out ---------------------------------- */
+  var nh = document.querySelector("[data-nh]");
+  if (nh) {
+    var nhToggle = nh.querySelector("[data-nh-toggle]");
+    var nhPanel = nh.querySelector(".nh__panel");
+    var nhSr = nh.querySelector("[data-nh-sr]");
+
+    var setNh = function (open) {
+      nh.classList.toggle("is-open", open);
+      nhToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (nhSr) nhSr.textContent = open ? "Close the new here form" : "Open the new here form";
+      if (open) {
+        // the panel is visibility:hidden until the transition starts,
+        // so focus has to wait a frame or it is dropped
+        window.setTimeout(function () {
+          var first = nhPanel.querySelector("input:not([type=hidden]):not(.hp)");
+          if (first) first.focus();
+        }, 60);
+      }
+    };
+
+    nhToggle.addEventListener("click", function () {
+      setNh(!nh.classList.contains("is-open"));
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nh.classList.contains("is-open")) {
+        setNh(false);
+        nhToggle.focus();
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (nh.classList.contains("is-open") && !nh.contains(e.target)) setNh(false);
+    });
+  }
+
   /* --- Forms -------------------------------------------------- */
   document.querySelectorAll("form[data-form]").forEach(function (form) {
     var msg = form.querySelector(".form__msg");

@@ -319,3 +319,89 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .foot__nav a:hover{color:var(--amber)}
 .foot__base{color:#A8ADB3;font-size:.95rem}
 .foot__base p{margin:0 0 .4rem}
+
+/* --- "New Here?" slide-out tab -------------------------------------------
+   Fixed to the right edge at all scroll positions. Set --nh-side to left
+   on .nh to move the whole thing to the other edge.                        */
+:root{--nh:#F6C14B;--nh-ink:#1A2109}
+
+.nh{position:fixed;top:50%;right:0;z-index:120;transform:translateY(-50%);
+  display:flex;align-items:center;pointer-events:none}
+
+/* the vertical tab */
+.nh__tab{
+  pointer-events:auto;order:1;
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  writing-mode:vertical-rl;
+  background:var(--nh);color:var(--nh-ink);border:0;
+  font-family:var(--font);font-weight:800;font-size:.92rem;letter-spacing:.03em;
+  padding:1.45rem .72rem;min-width:46px;height:170px;
+  border-radius:8px 0 0 8px;cursor:pointer;
+  box-shadow:-3px 0 14px rgba(0,0,0,.22);
+  transition:background .18s ease,padding .18s ease;
+}
+.nh__tab:hover{background:#FFD36E}
+.nh__tab .x{display:none;writing-mode:horizontal-tb;font-size:1.3rem;line-height:1}
+.nh.is-open .nh__tab .label{display:none}
+.nh.is-open .nh__tab .x{display:block}
+.nh.is-open .nh__tab{height:64px;padding:1rem .72rem}
+
+/* the panel */
+.nh__panel{
+  pointer-events:auto;order:2;
+  width:min(380px,calc(100vw - 62px));
+  background:var(--white);color:var(--ink);
+  border-radius:10px 0 0 10px;
+  box-shadow:0 18px 50px rgba(0,0,0,.3);
+  padding:1.6rem 1.5rem 1.7rem;
+  max-height:min(84vh,620px);overflow-y:auto;
+  transform:translateX(102%);opacity:0;visibility:hidden;
+  transition:transform .32s cubic-bezier(.2,.7,.3,1),opacity .24s ease,visibility .32s;
+}
+.nh.is-open .nh__panel{transform:translateX(0);opacity:1;visibility:visible}
+.nh__panel h2{font-size:1.3rem;margin-bottom:.5rem}
+.nh__panel .sub{font-size:.95rem;color:var(--muted);margin:0 0 1.2rem;line-height:1.55}
+.nh__panel .field{margin-bottom:1rem}
+.nh__panel .field label{font-size:.9rem;margin-bottom:.35rem}
+.nh__panel .field input,.nh__panel .field textarea{padding:.7rem .8rem;font-size:.97rem}
+.nh__panel .field textarea{min-height:88px}
+.nh__panel .btn{width:100%;justify-content:center;margin-top:.3rem;
+  padding-right:calc(1.5rem + var(--cut))}
+.nh__panel .form__msg{margin-top:.9rem;font-size:.92rem}
+
+/* move the whole unit to the left edge */
+.nh--left{right:auto;left:0}
+.nh--left .nh__tab{order:2;border-radius:0 8px 8px 0;box-shadow:3px 0 14px rgba(0,0,0,.22)}
+.nh--left .nh__panel{order:1;border-radius:0 10px 10px 0;transform:translateX(-102%)}
+.nh--left.is-open .nh__panel{transform:translateX(0)}
+
+@media (max-width:620px){
+  .nh{top:auto;bottom:0;right:0;left:0;transform:none;
+    flex-direction:column;align-items:stretch}
+  .nh__tab{writing-mode:horizontal-tb;order:2;height:auto;min-height:48px;min-width:0;
+    padding:.85rem 1.4rem;border-radius:8px 0 0 0;margin-left:auto}
+  .nh.is-open .nh__tab{height:auto;min-height:48px;padding:.85rem 1.4rem}
+  .nh__panel{order:1;width:100%;border-radius:12px 12px 0 0;max-height:88vh;
+    padding:1.15rem 1.15rem 1.3rem;transform:translateY(102%)}
+  /* tighten so the Submit button is reachable without scrolling the panel */
+  .nh__panel h2{font-size:1.18rem}
+  .nh__panel .sub{margin-bottom:.9rem;font-size:.9rem}
+  .nh__panel .field{margin-bottom:.7rem}
+  .nh__panel .field label{margin-bottom:.25rem;font-size:.86rem}
+  .nh__panel .field input{padding:.6rem .75rem}
+  .nh.is-open .nh__panel{transform:translateY(0)}
+  .nh--left .nh__tab{margin-left:0;margin-right:auto;border-radius:0 8px 0 0}
+  .nh--left .nh__panel{transform:translateY(102%);border-radius:12px 12px 0 0}
+}
+/* very short viewports (iPhone SE and similar): drop the sub-line so the
+   Submit button is still reachable without scrolling inside the panel */
+@media (max-width:620px) and (max-height:620px){
+  .nh__panel{max-height:92vh;padding-top:.95rem}
+  .nh__panel .sub{display:none}
+  .nh__panel h2{font-size:1.1rem;margin-bottom:.75rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .nh__panel{transition:opacity .01ms,visibility .01ms}
+}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
