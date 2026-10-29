@@ -1,0 +1,14 @@
+# ALTERNATIVE BLUEPRINT — Docker runtime.
+# Use this only if Render keeps misdetecting the language.
+# Rename this file to render.yaml, replacing the Node version.
+services:
+  - type: web
+    runtime: docker
+    name: journey-church
+    plan: free
+    region: ohio
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    previews:
+      generation: automatic

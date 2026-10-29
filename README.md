@@ -33,6 +33,20 @@ A free Render web service spins down after about 15 minutes idle, and the next v
 
 ---
 
+## If Render tries to run `pip install -r requirements.txt`
+
+That means the service was created with the **Python** runtime. Render locks a service's runtime at creation, so pushing Node code to it will never fix the error.
+
+**Fix:** delete the service and create a new one. Settings -> bottom of page -> Delete Service. Then **New -> Blueprint**, which reads `render.yaml` and sets Node automatically.
+
+Check the top of any build log to see which runtime a service is actually using. It names the language on the first few lines.
+
+### Bulletproof fallback: Docker
+
+If auto-detection keeps guessing wrong, the included `Dockerfile` removes all guessing. Rename `render.docker.yaml` to `render.yaml`, commit, push, and deploy via Blueprint. Or create the service manually with Runtime set to **Docker** and leave every other field blank.
+
+---
+
 ## Before you go live
 
 Both forms post to Web3Forms, which is free to 250 submissions a month and needs no server.
@@ -107,7 +121,9 @@ assets/fonts/            inter-var.woff2, 32K
 assets/js/site.js        Nav, form handling
 assets/img/              Photos, logos, favicons
 
-render.yaml              Render blueprint
+render.yaml              Render blueprint (Node runtime)
+render.docker.yaml       Alternative blueprint (Docker runtime)
+Dockerfile               Explicit runtime, if auto-detect misfires
 robots.txt / sitemap.xml
 ```
 
