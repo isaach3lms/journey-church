@@ -61,28 +61,66 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .measure{max-width:68ch}
 .center .measure{margin-inline:auto}
 
-/* --- Buttons -------------------------------------------------------------- */
-.btns{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:center;margin-top:2rem}
+/* --- Buttons --------------------------------------------------------------
+   Shape: left end fully rounded, right end cut on a diagonal.
+   The shape lives on ::before, not the button itself, so the focus outline
+   and the outlined variant are not sliced off by clip-path.
+   --cut controls how deep the angle bites.                                  */
+.btns{display:flex;flex-wrap:wrap;gap:.9rem 1.75rem;align-items:center;margin-top:2rem}
 .center .btns{justify-content:center}
-.btn{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:700;
-  font-size:.98rem;padding:.95rem 1.6rem;border-radius:999px;background:var(--amber);
-  color:var(--ink);border:2px solid var(--amber);min-height:48px;
-  transition:background .18s ease,border-color .18s ease,transform .18s ease}
-.btn:hover{background:#FFC95C;border-color:#FFC95C;transform:translateY(-1px)}
+
+.btn{
+  --cut:22px;
+  position:relative;isolation:isolate;
+  display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;
+  font-weight:800;font-size:.86rem;text-transform:uppercase;letter-spacing:.095em;
+  padding:1.05rem calc(1.5rem + var(--cut)) 1.05rem 1.9rem;
+  min-height:54px;border:0;background:transparent;color:var(--ink);
+  transition:transform .18s ease;
+}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--amber);
+  border-radius:999px 0 0 999px;
+  clip-path:polygon(0 0,100% 0,calc(100% - var(--cut)) 100%,0 100%);
+  transition:background .18s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:hover::before{background:#FFC95C}
 .btn .arw{transition:transform .18s ease}
 .btn:hover .arw{transform:translateX(3px)}
-.btn--olive{background:var(--olive);border-color:var(--olive);color:var(--white)}
-.btn--olive:hover{background:var(--olive-dark);border-color:var(--olive-dark)}
-.btn--ghost{background:transparent;border-color:currentColor;color:var(--ink)}
-.btn--ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero .btn:focus-visible,.oband .btn:focus-visible,.cta .btn:focus-visible,
+.nav .btn:focus-visible,.acc .btn:focus-visible{outline-color:var(--white)}
 
-.tlink{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:700;
-  font-size:.98rem;padding:.7rem .25rem;min-height:48px;border-bottom:2px solid var(--line);
-  transition:border-color .18s ease}
+.btn--olive{color:var(--white)}
+.btn--olive::before{background:var(--olive)}
+.btn--olive:hover::before{background:var(--olive-dark)}
+.btn--olive:focus-visible{outline-color:var(--ink)}
+
+/* outlined: a solid shape behind, inset by 2px with a white shape on top,
+   so the "border" follows the diagonal instead of stopping at it */
+.btn--ghost{color:var(--ink)}
+.btn--ghost::before{background:var(--ink)}
+.btn--ghost::after{
+  content:"";position:absolute;inset:2px;z-index:-1;background:var(--white);
+  border-radius:999px 0 0 999px;
+  clip-path:polygon(0 0,100% 0,calc(100% - var(--cut)) 100%,0 100%);
+  transition:background .18s ease;
+}
+.btn--ghost:hover{color:var(--white)}
+.btn--ghost:hover::before{background:var(--ink)}
+.btn--ghost:hover::after{background:var(--ink)}
+
+.tlink{
+  display:inline-flex;align-items:center;gap:.65rem;text-decoration:none;
+  font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.105em;
+  padding:.85rem .15rem;min-height:48px;border-bottom:1.5px solid var(--line);
+  transition:border-color .18s ease;
+}
 .tlink:hover{border-bottom-color:var(--amber-dark)}
 .tlink .arw{transition:transform .18s ease}
 .tlink:hover .arw{transform:translateX(3px)}
-.hero .tlink,.oband .tlink,.cta .tlink{color:var(--white);border-bottom-color:rgba(255,255,255,.5)}
+.hero .tlink,.oband .tlink,.cta .tlink{color:var(--white);border-bottom-color:rgba(255,255,255,.55)}
 .hero .tlink:hover,.oband .tlink:hover,.cta .tlink:hover{border-bottom-color:var(--amber)}
 
 /* --- Nav ------------------------------------------------------------------ */
@@ -100,7 +138,8 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .nav__links a{display:flex;align-items:center;min-height:44px;padding:.55rem .8rem;border-radius:999px;
   text-decoration:none;color:var(--white);font-weight:700;font-size:.94rem;transition:color .18s ease}
 .nav__links a:hover,.nav__links a[aria-current="page"]:not(.btn){color:var(--amber)}
-.nav__links a.btn{margin-left:.6rem;padding:.7rem 1.3rem;color:var(--ink)}
+.nav__links a.btn{--cut:15px;margin-left:.6rem;min-height:44px;
+  padding:.6rem calc(1rem + var(--cut)) .6rem 1.35rem;color:var(--ink)}
 .nav__links a.btn:hover{color:var(--ink)}
 .nav__toggle{display:none;background:transparent;border:2px solid rgba(255,255,255,.55);
   border-radius:999px;color:var(--white);padding:.6rem 1.1rem;font-weight:700;font-size:.9rem;min-height:44px}
@@ -115,7 +154,8 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   .nav__links a{padding:.95rem .25rem;font-size:1.02rem;border-radius:0;
     border-bottom:1px solid rgba(255,255,255,.16)}
   .nav__links li:last-child a{border-bottom:none}
-  .nav__links a.btn{margin:1rem 0 0;justify-content:center;border-radius:999px}
+  .nav__links a.btn{--cut:18px;margin:1rem 0 0;justify-content:center;
+    border-radius:999px 0 0 999px}
   .nav.is-menu-open{background:var(--olive)}
 }
 
@@ -192,7 +232,8 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   justify-content:flex-end;min-height:300px}
 .lcard__body h3{font-size:1.45rem}
 .lcard__body span{display:inline-flex;align-items:center;gap:.5rem;margin-top:.7rem;font-weight:700;
-  font-size:.95rem;padding-bottom:.45rem;border-bottom:2px solid var(--white);align-self:flex-start}
+  font-size:.8rem;text-transform:uppercase;letter-spacing:.105em;padding-bottom:.5rem;
+  border-bottom:1.5px solid rgba(255,255,255,.75);align-self:flex-start}
 
 /* --- Accordion ------------------------------------------------------------ */
 .acc{margin-top:2.5rem;display:grid;gap:.85rem;text-align:left}
