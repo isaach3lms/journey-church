@@ -318,8 +318,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 /* --- Footer --------------------------------------------------------------- */
 .foot{--amber-text:var(--amber);background:var(--black);color:var(--white);padding-block:clamp(3rem,6vw,4rem) 2rem;text-align:center}
 .foot__partners{margin-bottom:2.25rem}
-.foot__partners p{margin:0 0 1rem;font-weight:700;font-size:1.05rem}
-.foot__partners img{width:min(300px,70vw);margin-inline:auto}
+.foot__partners img{width:min(430px,84vw);margin-inline:auto}
 .foot__social{display:flex;justify-content:center;gap:.35rem;margin-bottom:2rem}
 .foot__social a{display:flex;align-items:center;justify-content:center;width:48px;height:48px;
   border-radius:50%;color:var(--white);transition:color .18s ease,background .18s ease}
