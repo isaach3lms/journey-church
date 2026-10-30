@@ -313,6 +313,9 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   border-radius:50%;color:var(--white);transition:color .18s ease,background .18s ease}
 .foot__social a:hover{color:var(--amber);background:rgba(255,255,255,.08)}
 .foot__social svg{width:22px;height:22px;fill:currentColor}
+.foot__gather{margin:0 auto 1.75rem;max-width:64ch;color:#D7DACF;
+  font-size:1rem;line-height:1.65;text-wrap:pretty}
+@media (max-width:620px){.foot__gather br{display:none}}
 .foot__nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.25rem 1.25rem;list-style:none;
   margin:0 0 1.5rem;padding:0}
 .foot__nav a{display:flex;align-items:center;min-height:48px;padding:.5rem .4rem;text-decoration:none;
