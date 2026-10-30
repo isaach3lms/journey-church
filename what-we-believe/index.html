@@ -173,33 +173,12 @@
   </div>
 </footer>
 
-<!-- New Here? slide-out. Add class "nh--left" to move it to the left edge. -->
-<div class="nh" id="new-here" data-nh>
-  <button class="nh__tab" type="button" data-nh-toggle aria-expanded="false" aria-controls="nh-panel">
-    <span class="label">New Here?</span>
-    <span class="x" aria-hidden="true">&times;</span>
-    <span class="sr-only" data-nh-sr>Open the new here form</span>
-  </button>
-  <div class="nh__panel" id="nh-panel" role="dialog" aria-modal="false" aria-label="New here">
-    <h2>New Here?</h2>
-    <p class="sub">Tell us a little about yourself and we will reach out before your first Sunday.</p>
-    <form data-form data-success="Got it. Someone from our team will reach out before Sunday.">
-      <input type="hidden" name="access_key" value="">
-      <input type="hidden" name="subject" value="New Here form - The Journey Church">
-      <input type="hidden" name="from_name" value="thejourneychurchsemo.com">
-      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
-      <div class="field"><label for="nh-first">First name</label>
-        <input id="nh-first" name="first_name" type="text" placeholder="Jane" autocomplete="given-name" required></div>
-      <div class="field"><label for="nh-last">Last name</label>
-        <input id="nh-last" name="last_name" type="text" placeholder="Smith" autocomplete="family-name"></div>
-      <div class="field"><label for="nh-phone">Phone number</label>
-        <input id="nh-phone" name="phone" type="tel" placeholder="(573) 555-0123" autocomplete="tel"></div>
-      <div class="field"><label for="nh-email">Email</label>
-        <input id="nh-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required></div>
-      <button class="btn" type="submit">Submit</button>
-      <div class="form__msg" aria-live="polite"></div>
-    </form>
-  </div>
+<!-- "New Here?" tab. Add class "nh--left" to move it to the left edge. -->
+<div class="nh">
+  <a class="nh__tab" href="https://visit.thejourneychurchsemo.com/visit">
+    <span class="nh__lead">New Here?</span>
+    <span class="nh__cta">Plan A Visit <span class="arw" aria-hidden="true">&rarr;</span></span>
+  </a>
 </div>
 
 <script src="/assets/js/site.js" defer></script>
