@@ -73,7 +73,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   --cut:22px;
   position:relative;isolation:isolate;
   display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;
-  font-weight:800;font-size:.86rem;text-transform:uppercase;letter-spacing:.095em;
+  font-weight:700;font-size:.97rem;letter-spacing:-.004em;
   padding:1.05rem calc(1.5rem + var(--cut)) 1.05rem 1.9rem;
   min-height:54px;border:0;background:transparent;color:var(--ink);
   transition:transform .18s ease;
@@ -113,7 +113,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 
 .tlink{
   display:inline-flex;align-items:center;gap:.65rem;text-decoration:none;
-  font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.105em;
+  font-weight:700;font-size:.95rem;letter-spacing:-.004em;
   padding:.85rem .15rem;min-height:48px;border-bottom:1.5px solid var(--line);
   transition:border-color .18s ease;
 }
@@ -147,7 +147,6 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   text-decoration:none;color:var(--white);font-weight:700;font-size:.94rem;transition:color .18s ease}
 .nav__links a:hover,.nav__links a[aria-current="page"]:not(.btn){color:var(--amber)}
 .nav__links a.btn{--cut:15px;margin-left:.75rem;min-height:44px;
-  text-transform:none;letter-spacing:-.005em;font-size:.94rem;font-weight:700;
   padding:.6rem calc(1rem + var(--cut)) .6rem 1.35rem;color:var(--ink)}
 .nav__links a.btn:hover{color:var(--ink)}
 /* Account icon. Icon only; the link is named for screen readers via aria-label. */
@@ -248,7 +247,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   justify-content:flex-end;min-height:300px}
 .lcard__body h3{font-size:1.45rem}
 .lcard__body span{display:inline-flex;align-items:center;gap:.5rem;margin-top:.7rem;font-weight:700;
-  font-size:.8rem;text-transform:uppercase;letter-spacing:.105em;padding-bottom:.5rem;
+  font-size:.93rem;font-weight:700;letter-spacing:-.004em;padding-bottom:.5rem;
   border-bottom:1.5px solid rgba(255,255,255,.75);align-self:flex-start}
 
 /* --- Accordion ------------------------------------------------------------ */
