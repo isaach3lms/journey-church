@@ -365,3 +365,35 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 }
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* --- Black and white filmstrip -------------------------------------------
+   Full-bleed marquee of photos, no labels. The track holds the same set
+   twice and slides exactly -50%, so the loop is seamless. Height is fixed
+   and width is auto, so portrait and landscape shots give a varied rhythm. */
+.filmstrip{
+  --fs-h:clamp(190px,24vw,310px);
+  --fs-gap:14px;
+  position:relative;overflow:hidden;
+  padding-block:clamp(2.5rem,6vw,4.5rem);
+  background:var(--white);
+  /* soft fade at both edges */
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
+}
+.filmstrip__track{display:flex;width:max-content;gap:var(--fs-gap);
+  animation:filmstrip 64s linear infinite;will-change:transform}
+.filmstrip__set{display:flex;gap:var(--fs-gap);flex:0 0 auto}
+.filmstrip img{
+  height:var(--fs-h);width:auto;flex:0 0 auto;display:block;
+  object-fit:cover;border-radius:5px;
+  filter:grayscale(1) contrast(1.06);
+  transition:filter .35s ease;
+}
+/* -50% lands exactly on the start of the duplicated set */
+@keyframes filmstrip{from{transform:translateX(0)}to{transform:translateX(calc(-50% - (var(--fs-gap) / 2)))}}
+.filmstrip:hover .filmstrip__track{animation-play-state:paused}
+
+@media (prefers-reduced-motion:reduce){
+  .filmstrip{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .filmstrip__track{animation:none}
+}
