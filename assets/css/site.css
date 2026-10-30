@@ -329,7 +329,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .nh{position:fixed;top:50%;right:0;z-index:120;transform:translateY(-50%)}
 
 .nh__tab{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
   writing-mode:vertical-rl;text-decoration:none;
   background:var(--nh);color:var(--nh-ink);
   font-family:var(--font);line-height:1.25;
@@ -339,10 +339,8 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 }
 .nh__tab:hover{background:#FFD36E;padding-right:.9rem}
 .nh__lead{font-weight:800;font-size:.95rem;letter-spacing:.015em}
-.nh__cta{display:flex;align-items:center;gap:.4rem;
-  font-weight:600;font-size:.84rem;letter-spacing:.02em;opacity:.9}
-.nh__cta .arw{transition:transform .18s ease}
-.nh__tab:hover .nh__cta .arw{transform:translateY(3px)}
+.nh__tab .arw{transition:transform .18s ease}
+.nh__tab:hover .arw{transform:translateY(3px)}
 .nh__tab:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 
 /* left-edge variant */
@@ -357,10 +355,9 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
     padding:.95rem 1.2rem;border-radius:0;min-height:52px;
     box-shadow:0 -3px 14px rgba(0,0,0,.22)}
   .nh__tab:hover{padding:.95rem 1.2rem}
-  .nh__lead{font-size:.98rem}
-  .nh__cta{font-size:.9rem}
-  .nh__cta .arw{transform:none}
-  .nh__tab:hover .nh__cta .arw{transform:translateX(3px)}
+  .nh__lead{font-size:1rem}
+  .nh__tab .arw{transform:none}
+  .nh__tab:hover .arw{transform:translateX(3px)}
   /* keep the footer clear of the fixed bar */
   .foot{padding-bottom:5.5rem}
 }
