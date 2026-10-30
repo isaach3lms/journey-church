@@ -374,7 +374,8 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   --fs-h:clamp(190px,24vw,310px);
   --fs-gap:14px;
   position:relative;overflow:hidden;
-  padding-block:clamp(2.5rem,6vw,4.5rem);
+  padding-top:clamp(1.5rem,3vw,2.5rem);
+  padding-bottom:clamp(2.5rem,6vw,4.5rem);
   background:var(--white);
   /* soft fade at both edges */
   -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
