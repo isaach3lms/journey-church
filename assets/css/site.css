@@ -154,11 +154,13 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .nav__account svg{flex:0 0 auto;display:block;transition:opacity .18s ease}
 .nav__account a:hover svg{opacity:.82}
 
-/* --- Connect dropdown -----------------------------------------------------
-   Desktop: a panel under "Connect" that opens on hover or keyboard focus.
-   Mobile: an indented list inside the hamburger panel, opened by the button.
-   The parent is a <button>, not a link, because it goes nowhere on its own:
-   /connect/ is reachable as "Contact Us" inside it.                        */
+/* --- Connect mega menu ----------------------------------------------------
+   Desktop: a full-bleed white panel that drops below the bar, with the
+   links in titled columns and a feature card on the right.
+   Mobile: the same markup collapses into an indented accordion.
+   The panel is position:fixed so it can span the viewport without the
+   100vw scrollbar overflow bug; the nav scrolls away, so JS closes the
+   panel on scroll rather than letting it float.                          */
 .nav__droptog{
   display:flex;align-items:center;gap:.4rem;min-height:44px;
   padding:.55rem .8rem;border:0;background:transparent;border-radius:999px;
@@ -170,36 +172,72 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .nav__drop.is-current > .nav__droptog{color:var(--amber)}
 .nav__droptog .chev{flex:0 0 auto;transition:transform .2s ease}
 .nav__drop.is-open > .nav__droptog .chev{transform:rotate(180deg)}
-.nav__sub{list-style:none;margin:0;padding:0}
+.nav__col ul{list-style:none;margin:0;padding:0}
 
 @media (min-width:1081px){
-  .nav__drop{position:relative}
   .nav__sub{
-    position:absolute;top:calc(100% + 16px);left:0;z-index:10;
-    min-width:252px;padding:.4rem;border-radius:12px;
-    background:var(--olive-dark);box-shadow:0 16px 34px rgba(0,0,0,.34);
-    opacity:0;visibility:hidden;transform:translateY(-6px);
-    transition:opacity .18s ease,transform .18s ease,visibility .18s;
+    position:fixed;left:0;right:0;top:var(--nav-h);z-index:10;
+    background:var(--white);border-top:1px solid rgba(15,23,42,.07);
+    box-shadow:0 24px 46px rgba(0,0,0,.17);
+    padding:clamp(2.1rem,3vw,2.9rem) 0 clamp(2.3rem,3.4vw,3.1rem);
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .2s ease,transform .2s ease,visibility .2s;
   }
-  /* invisible bridge over the gap, so the pointer can travel from the
-     button down into the panel without the hover dropping out */
-  .nav__sub::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
-  /* no :focus-within here: it would hold the panel open against Escape,
-     since focus stays on the button. Keyboard opens it with Enter/Space,
-     which fires the button's click and sets .is-open. */
+  /* invisible bridge across the gap between the button and the panel, so
+     the pointer can travel down without the hover dropping out */
+  .nav__sub::before{content:"";position:absolute;top:-26px;left:0;right:0;height:26px}
+  .nav__sub{padding-bottom:clamp(1.9rem,2.6vw,2.5rem)}
+  /* no :focus-within: it would hold the panel open against Escape, since
+     focus stays on the button. Enter/Space fires click and sets .is-open. */
   .nav__drop:hover .nav__sub,
   .nav__drop.is-open .nav__sub{opacity:1;visibility:visible;transform:none}
-  .nav__links .nav__sub a{border-radius:8px;padding:.72rem .85rem;font-size:.92rem;white-space:nowrap}
-  .nav__links .nav__sub a:hover{background:rgba(255,255,255,.09)}
+  /* once the header has scrolled off, a fixed panel would hang in mid-air */
+  .nav.is-past-top .nav__drop .nav__sub{opacity:0;visibility:hidden;transform:translateY(-10px)}
+
+  /* tight link columns on the left, feature card taking the rest on the
+     right, so the panel is no taller than the content inside it */
+  .nav__mega{display:grid;align-items:center;
+    grid-template-columns:minmax(0,210px) minmax(0,250px) minmax(0,1fr);
+    gap:clamp(1.75rem,3vw,3.25rem)}
+  .nav__col h3{font-size:.78rem;font-weight:800;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 1.1rem}
+  .nav__links .nav__col a{display:block;min-height:0;padding:.62rem 0;
+    border-radius:0;border-bottom:0;color:var(--ink);
+    font-weight:700;font-size:1.04rem;letter-spacing:-.014em}
+  .nav__links .nav__col a:hover,
+  .nav__links .nav__col a[aria-current="page"]{color:var(--amber-text)}
+
+  /* capped and pushed right, so a wide screen does not blow the image up
+     and drag the height of the whole panel with it */
+  .nav__links .nav__feat{display:block;min-height:0;padding:0;border-radius:10px;
+    border-bottom:0;color:var(--ink);overflow:hidden;max-width:460px;margin-left:auto}
+  .nav__feat img{display:block;width:100%;aspect-ratio:3/1;object-fit:cover;border-radius:10px}
+  /* inline-flex, not flex: the underline should hug the words rather than
+     run the full width of the column */
+  .nav__feat span{display:inline-flex;align-items:center;gap:.55rem;margin-top:.95rem;
+    font-weight:800;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;
+    text-decoration:underline;text-underline-offset:5px;
+    text-decoration-color:var(--line);transition:text-decoration-color .18s ease}
+  .nav__links .nav__feat:hover span{color:var(--amber-text);text-decoration-color:var(--amber-dark)}
+  .nav__feat .arw{transition:transform .18s ease}
+  .nav__links .nav__feat:hover .arw{transform:translateX(3px)}
 }
 
 @media (max-width:1080px){
   .nav__droptog{width:100%;justify-content:space-between;padding:.95rem .25rem;
     font-size:1.02rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,.16)}
-  .nav__sub{display:none;padding:.1rem 0 .55rem .95rem}
+  .nav__sub{display:none;padding:.35rem 0 .55rem .95rem}
   .nav__drop.is-open .nav__sub{display:block}
-  .nav__links .nav__sub a{font-size:.98rem;padding:.72rem .25rem;border-bottom:none;color:#E4E7DC}
-  .nav__links .nav__sub a[aria-current="page"]{color:var(--amber)}
+  .nav__mega{display:block;width:auto;padding:0}
+  .nav__col + .nav__col{margin-top:.9rem}
+  .nav__col h3{font-size:.72rem;font-weight:800;letter-spacing:.13em;
+    text-transform:uppercase;color:rgba(255,255,255,.52);margin:0 0 .15rem}
+  .nav__links .nav__col a{font-size:.98rem;padding:.72rem .25rem;
+    border-bottom:0;color:#E4E7DC}
+  .nav__links .nav__col a[aria-current="page"]{color:var(--amber)}
+  /* the feature card is a desktop flourish; it would only make the
+     hamburger panel taller on a phone */
+  .nav__links .nav__feat{display:none}
 }
 
 .nav__toggle{display:none;background:transparent;border:2px solid rgba(255,255,255,.55);

@@ -23,12 +23,20 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
      to track. Close the mobile menu if the header leaves the viewport. */
   if (nav && links) {
     window.addEventListener("scroll", function () {
-      if (links.classList.contains("is-open") && window.scrollY > 10) {
-        links.classList.remove("is-open");
-        nav.classList.remove("is-menu-open");
-        if (toggle) {
-          toggle.setAttribute("aria-expanded", "false");
-          toggle.textContent = "Menu";
+      var past = window.scrollY > 10;
+      /* The mega panel is position:fixed but the header is not: once the
+         header has scrolled away the panel would hang in mid-air, so it is
+         suppressed (CSS) and any click-opened one is closed (here). */
+      nav.classList.toggle("is-past-top", past);
+      if (past) {
+        closeDrops();
+        if (links.classList.contains("is-open")) {
+          links.classList.remove("is-open");
+          nav.classList.remove("is-menu-open");
+          if (toggle) {
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.textContent = "Menu";
+          }
         }
       }
     }, { passive: true });
