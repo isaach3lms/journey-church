@@ -30,10 +30,15 @@
     <ul class="nav__links" id="nav-links" data-nav-links>
         <li><a href="/">Home</a></li>
         <li><a href="/new-here/">New Here?</a></li>
-          <li><a href="/our-pastors/">Our Pastors</a></li>
-        <li><a href="/what-we-believe/">What We Believe</a></li>
-        <li><a href="/serve-with-us/">Serve</a></li>
-        <li><a href="/connect/">Connect</a></li>
+        <li class="nav__drop" data-drop>
+          <button class="nav__droptog" data-drop-toggle aria-expanded="false" aria-controls="nav-connect">Connect <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <ul class="nav__sub" id="nav-connect">
+            <li><a href="/our-pastors/">Our Pastors</a></li>
+            <li><a href="/what-we-believe/">What We Believe</a></li>
+            <li><a href="/serve-with-us/">Serving Opportunities</a></li>
+            <li><a href="/connect/">Contact Us</a></li>
+          </ul>
+        </li>
         <li><a class="btn" href="/give/" aria-current="page">Give Online</a></li>
         <li class="nav__account"><a href="https://app.thejourneychurchsemo.com" aria-label="My Account">
           <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" focusable="false">
@@ -102,8 +107,8 @@
       <li><a href="/new-here/">New Here?</a></li>
       <li><a href="/our-pastors/">Our Pastors</a></li>
       <li><a href="/what-we-believe/">What We Believe</a></li>
-      <li><a href="/serve-with-us/">Serve</a></li>
-      <li><a href="/connect/">Connect</a></li>
+      <li><a href="/serve-with-us/">Serving Opportunities</a></li>
+      <li><a href="/connect/">Contact Us</a></li>
       <li><a href="/give/">Giving</a></li>
     </ul>
     <div class="foot__base">

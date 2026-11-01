@@ -40,14 +40,56 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.textContent = open ? "Close" : "Menu";
       nav.classList.toggle("is-menu-open", open);
+      if (!open) closeDrops();
     });
     links.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") {
+      if (e.target.closest && e.target.closest("a")) {
         links.classList.remove("is-open");
         nav.classList.remove("is-menu-open");
         toggle.setAttribute("aria-expanded", "false");
         toggle.textContent = "Menu";
+        closeDrops();
       }
+    });
+  }
+
+  /* --- Nav dropdown -------------------------------------------------
+     On desktop CSS opens the panel on hover and on keyboard focus, so
+     this only has to handle the click/tap case and closing again.      */
+  var drops = Array.prototype.slice.call(document.querySelectorAll("[data-drop]"));
+
+  function closeDrops(except) {
+    drops.forEach(function (drop) {
+      if (drop === except) return;
+      drop.classList.remove("is-open");
+      var t = drop.querySelector("[data-drop-toggle]");
+      if (t) t.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  drops.forEach(function (drop) {
+    var tog = drop.querySelector("[data-drop-toggle]");
+    if (!tog) return;
+    tog.addEventListener("click", function (e) {
+      e.stopPropagation();
+      closeDrops(drop);
+      var open = drop.classList.toggle("is-open");
+      tog.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  if (drops.length) {
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest || !e.target.closest("[data-drop]")) closeDrops();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" && e.key !== "Esc") return;
+      drops.forEach(function (drop) {
+        if (!drop.classList.contains("is-open")) return;
+        drop.classList.remove("is-open");
+        var t = drop.querySelector("[data-drop-toggle]");
+        if (t) { t.setAttribute("aria-expanded", "false"); t.focus(); }
+      });
     });
   }
 

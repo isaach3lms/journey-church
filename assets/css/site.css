@@ -154,6 +154,54 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .nav__account svg{flex:0 0 auto;display:block;transition:opacity .18s ease}
 .nav__account a:hover svg{opacity:.82}
 
+/* --- Connect dropdown -----------------------------------------------------
+   Desktop: a panel under "Connect" that opens on hover or keyboard focus.
+   Mobile: an indented list inside the hamburger panel, opened by the button.
+   The parent is a <button>, not a link, because it goes nowhere on its own:
+   /connect/ is reachable as "Contact Us" inside it.                        */
+.nav__droptog{
+  display:flex;align-items:center;gap:.4rem;min-height:44px;
+  padding:.55rem .8rem;border:0;background:transparent;border-radius:999px;
+  color:var(--white);font-family:var(--font);font-weight:700;font-size:.94rem;
+  letter-spacing:inherit;cursor:pointer;transition:color .18s ease;
+}
+.nav__droptog:hover,
+.nav__drop.is-open > .nav__droptog,
+.nav__drop.is-current > .nav__droptog{color:var(--amber)}
+.nav__droptog .chev{flex:0 0 auto;transition:transform .2s ease}
+.nav__drop.is-open > .nav__droptog .chev{transform:rotate(180deg)}
+.nav__sub{list-style:none;margin:0;padding:0}
+
+@media (min-width:1081px){
+  .nav__drop{position:relative}
+  .nav__sub{
+    position:absolute;top:calc(100% + 16px);left:0;z-index:10;
+    min-width:252px;padding:.4rem;border-radius:12px;
+    background:var(--olive-dark);box-shadow:0 16px 34px rgba(0,0,0,.34);
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity .18s ease,transform .18s ease,visibility .18s;
+  }
+  /* invisible bridge over the gap, so the pointer can travel from the
+     button down into the panel without the hover dropping out */
+  .nav__sub::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+  /* no :focus-within here: it would hold the panel open against Escape,
+     since focus stays on the button. Keyboard opens it with Enter/Space,
+     which fires the button's click and sets .is-open. */
+  .nav__drop:hover .nav__sub,
+  .nav__drop.is-open .nav__sub{opacity:1;visibility:visible;transform:none}
+  .nav__links .nav__sub a{border-radius:8px;padding:.72rem .85rem;font-size:.92rem;white-space:nowrap}
+  .nav__links .nav__sub a:hover{background:rgba(255,255,255,.09)}
+}
+
+@media (max-width:1080px){
+  .nav__droptog{width:100%;justify-content:space-between;padding:.95rem .25rem;
+    font-size:1.02rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .nav__sub{display:none;padding:.1rem 0 .55rem .95rem}
+  .nav__drop.is-open .nav__sub{display:block}
+  .nav__links .nav__sub a{font-size:.98rem;padding:.72rem .25rem;border-bottom:none;color:#E4E7DC}
+  .nav__links .nav__sub a[aria-current="page"]{color:var(--amber)}
+}
+
 .nav__toggle{display:none;background:transparent;border:2px solid rgba(255,255,255,.55);
   border-radius:999px;color:var(--white);padding:.6rem 1.1rem;font-weight:700;font-size:.9rem;min-height:44px}
 
