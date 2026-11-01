@@ -366,8 +366,6 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   .foot{padding-bottom:5.5rem}
 }
 
-}
-
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* --- Black and white filmstrip -------------------------------------------
@@ -440,3 +438,33 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 @media (min-width:621px) and (max-width:899px){
   .collage{padding-right:58px}
 }
+
+/* --- Text cards (New Here page) -------------------------------------------
+   Same border and radius as the photo cards, but no image, so the padding
+   has to carry the top of the box on its own.                              */
+.vcards{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:2.5rem}
+@media (min-width:700px){.vcards{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.vcards--3{grid-template-columns:repeat(3,1fr)}}
+.vcard{border:2px solid var(--ink);border-radius:10px;background:var(--white);
+  padding:1.7rem 1.55rem 1.8rem;text-align:left}
+/* --muted, not --amber-text: the gold measures 3.24:1 on white, which only
+   clears AA at large sizes, and this label is 13.8px. Same treatment as
+   .info h3 on the contact page. */
+.vcard h3{font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 .85rem}
+.vcard p{margin:0;line-height:1.68;font-size:1.04rem}
+
+/* --- Service times -------------------------------------------------------- */
+.stime{font-size:clamp(2.6rem,6.5vw,4rem);font-weight:800;letter-spacing:-.035em;
+  line-height:1.02;margin:1.5rem 0 .9rem}
+.splace{margin:0 auto;max-width:34ch;font-size:1.06rem;line-height:1.6;color:#E9ECE1}
+
+/* --- Beliefs at a glance -------------------------------------------------
+   Titles only. The wording of each belief lives on /what-we-believe/ so
+   there is one copy to edit, not two.                                      */
+.glance{display:grid;gap:.85rem 2.5rem;grid-template-columns:1fr;margin:2.5rem 0 0;
+  padding:0;list-style:none;text-align:left}
+@media (min-width:720px){.glance{grid-template-columns:repeat(2,1fr)}}
+.glance li{display:flex;gap:.8rem;align-items:flex-start;line-height:1.55;
+  font-weight:600;font-size:1.02rem}
+.glance svg{flex:0 0 auto;width:21px;height:21px;margin-top:.2rem;color:var(--amber)}
