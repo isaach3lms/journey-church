@@ -175,10 +175,17 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .nav__col ul{list-style:none;margin:0;padding:0}
 
 @media (min-width:1081px){
+  /* The panel and the bar share one colour so they read as a single block
+     with no seam. While the panel is open the header drops its gradient
+     and goes solid olive to match; it returns to the gradient on close. */
+  .nav:not(.is-esc):has(.nav__drop:hover)::before,
+  .nav:not(.is-esc):has(.nav__drop.is-open)::before,
+  .nav.has-drop:not(.is-esc)::before{height:100%;background:var(--olive)}
   .nav__sub{
+    --amber-text:var(--amber);
     position:fixed;left:0;right:0;top:var(--nav-h);z-index:10;
-    background:var(--white);border-top:1px solid rgba(15,23,42,.07);
-    box-shadow:0 24px 46px rgba(0,0,0,.17);
+    background:var(--olive);border-top:0;color:var(--white);
+    box-shadow:0 24px 46px rgba(0,0,0,.26);
     padding:clamp(2.1rem,3vw,2.9rem) 0 clamp(2.3rem,3.4vw,3.1rem);
     opacity:0;visibility:hidden;transform:translateY(-10px);
     transition:opacity .2s ease,transform .2s ease,visibility .2s;
@@ -192,7 +199,8 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   .nav__drop:hover .nav__sub,
   .nav__drop.is-open .nav__sub{opacity:1;visibility:visible;transform:none}
   /* once the header has scrolled off, a fixed panel would hang in mid-air */
-  .nav.is-past-top .nav__drop .nav__sub{opacity:0;visibility:hidden;transform:translateY(-10px)}
+  .nav.is-past-top .nav__drop .nav__sub,
+  .nav.is-esc .nav__drop .nav__sub{opacity:0;visibility:hidden;transform:translateY(-10px)}
 
   /* tight link columns on the left, feature card taking the rest on the
      right, so the panel is no taller than the content inside it */
@@ -200,9 +208,9 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
     grid-template-columns:minmax(0,210px) minmax(0,250px) minmax(0,1fr);
     gap:clamp(1.75rem,3vw,3.25rem)}
   .nav__col h3{font-size:.78rem;font-weight:800;letter-spacing:.13em;
-    text-transform:uppercase;color:var(--muted);margin:0 0 1.1rem}
+    text-transform:uppercase;color:rgba(255,255,255,.62);margin:0 0 1.1rem}
   .nav__links .nav__col a{display:block;min-height:0;padding:.62rem 0;
-    border-radius:0;border-bottom:0;color:var(--ink);
+    border-radius:0;border-bottom:0;color:var(--white);
     font-weight:700;font-size:1.04rem;letter-spacing:-.014em}
   .nav__links .nav__col a:hover,
   .nav__links .nav__col a[aria-current="page"]{color:var(--amber-text)}
@@ -210,15 +218,16 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   /* capped and pushed right, so a wide screen does not blow the image up
      and drag the height of the whole panel with it */
   .nav__links .nav__feat{display:block;min-height:0;padding:0;border-radius:10px;
-    border-bottom:0;color:var(--ink);overflow:hidden;max-width:460px;margin-left:auto}
+    border-bottom:0;color:var(--white);overflow:hidden;max-width:460px;margin-left:auto}
   .nav__feat img{display:block;width:100%;aspect-ratio:3/1;object-fit:cover;border-radius:10px}
   /* inline-flex, not flex: the underline should hug the words rather than
      run the full width of the column */
   .nav__feat span{display:inline-flex;align-items:center;gap:.55rem;margin-top:.95rem;
     font-weight:800;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;
     text-decoration:underline;text-underline-offset:5px;
-    text-decoration-color:var(--line);transition:text-decoration-color .18s ease}
-  .nav__links .nav__feat:hover span{color:var(--amber-text);text-decoration-color:var(--amber-dark)}
+    text-decoration-color:rgba(255,255,255,.35);
+    transition:text-decoration-color .18s ease,color .18s ease}
+  .nav__links .nav__feat:hover span{color:var(--amber);text-decoration-color:var(--amber)}
   .nav__feat .arw{transition:transform .18s ease}
   .nav__links .nav__feat:hover .arw{transform:translateX(3px)}
 }

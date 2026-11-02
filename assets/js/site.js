@@ -73,6 +73,7 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
       var t = drop.querySelector("[data-drop-toggle]");
       if (t) t.setAttribute("aria-expanded", "false");
     });
+    if (nav) nav.classList.remove("has-drop");
   }
 
   drops.forEach(function (drop) {
@@ -80,9 +81,13 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
     if (!tog) return;
     tog.addEventListener("click", function (e) {
       e.stopPropagation();
+      if (nav) nav.classList.remove("is-esc");
       closeDrops(drop);
       var open = drop.classList.toggle("is-open");
       tog.setAttribute("aria-expanded", open ? "true" : "false");
+      /* The header goes solid to match the panel. CSS :has() covers the
+         hover case; this covers click and keyboard without relying on it. */
+      if (nav) nav.classList.toggle("has-drop", open);
     });
   });
 
@@ -92,13 +97,25 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
     });
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Escape" && e.key !== "Esc") return;
-      drops.forEach(function (drop) {
-        if (!drop.classList.contains("is-open")) return;
-        drop.classList.remove("is-open");
-        var t = drop.querySelector("[data-drop-toggle]");
-        if (t) { t.setAttribute("aria-expanded", "false"); t.focus(); }
-      });
+      var open = drops.filter(function (d) { return d.classList.contains("is-open"); });
+      if (!open.length) return;
+      /* closeDrops, not a loop of its own: it is what also puts the header
+         back to its gradient. */
+      closeDrops();
+      /* A mouse user who clicked is still hovering the button, and CSS
+         hover would reopen the panel immediately. This flag holds it shut
+         until the pointer actually leaves. */
+      if (nav) nav.classList.add("is-esc");
+      var t = open[0].querySelector("[data-drop-toggle]");
+      if (t) t.focus();
     });
+    /* Clear the flag the moment the pointer actually moves: a stationary
+       mouse fires nothing, so the panel stays shut, but any real movement
+       hands hover back. A keyboard-only flow never fires this, so the
+       toggle clears it too (above). */
+    document.addEventListener("mousemove", function () {
+      if (nav && nav.classList.contains("is-esc")) nav.classList.remove("is-esc");
+    }, { passive: true });
   }
 
   /* --- Trail waypoints ---------------------------------------- */
