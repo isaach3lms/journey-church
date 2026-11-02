@@ -416,17 +416,6 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .foot__nav a{display:flex;align-items:center;min-height:48px;padding:.5rem .4rem;text-decoration:none;
   font-weight:700;font-size:1rem;transition:color .18s ease}
 .foot__nav a:hover{color:var(--amber)}
-/* Connect group in the footer, mirroring the Connect menu in the header:
-   same four links under the same label, so the two menus agree. */
-.foot__group{margin:0 0 1.6rem}
-.foot__gl{font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.62);margin:0 0 .3rem}
-.foot__sub{display:flex;flex-wrap:wrap;justify-content:center;gap:.1rem 1.25rem;
-  list-style:none;margin:0;padding:0}
-.foot__sub a{display:flex;align-items:center;min-height:44px;padding:.4rem .4rem;
-  text-decoration:none;font-weight:600;font-size:.96rem;color:#D7DACF;
-  transition:color .18s ease}
-.foot__sub a:hover{color:var(--amber)}
 .foot__base{color:#A8ADB3;font-size:.95rem}
 .foot__base p{margin:0 0 .4rem}
 
