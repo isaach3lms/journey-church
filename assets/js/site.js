@@ -8,7 +8,7 @@
    Create an access key with the church email, paste it below,
    and both forms start delivering. No account or server needed.
    ------------------------------------------------------------- */
-var FORM_ACCESS_KEY = "PASTE-YOUR-WEB3FORMS-ACCESS-KEY-HERE";
+var FORM_ACCESS_KEY = "c1a64270-f09d-4c38-8f63-ab1bbf792e0c";
 var FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
 (function () {
