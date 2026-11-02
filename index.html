@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="/assets/img/icon-180.png">
 <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/fonts.css?v=02df5d41">
-<link rel="stylesheet" href="/assets/css/site.css?v=9fa2aaf3">
+<link rel="stylesheet" href="/assets/css/site.css?v=c629df83">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Church","name":"The Journey Church",
 "url":"https://thejourneychurchsemo.com/","logo":"https://thejourneychurchsemo.com/assets/img/icon-512.png",
@@ -34,7 +34,10 @@
     <a class="nav__brand" href="/" aria-label="The Journey Church, home">
       <img src="/assets/img/logo-white.png" alt="The Journey Church" width="707" height="353">
     </a>
-    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <svg class="ico ico--menu" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg class="ico ico--close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
     <ul class="nav__links" id="nav-links" data-nav-links>
         <li><a href="/" aria-current="page">Home</a></li>
         <li><a href="/new-here/">New Here?</a></li>
@@ -63,13 +66,18 @@
             </div>
           </div>
         </li>
-        <li><a class="btn" href="/give/">Give Online</a></li>
+        <li class="nav__give"><a class="btn" href="/give/">Give Online</a></li>
+        <li class="nav__social">
+          <a href="https://www.instagram.com/thejourneychurch.semo" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84ZM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4Z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61590643469654" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07Z"/></svg></a>
+          <a href="https://www.youtube.com/@thejourneychurchsemo" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg></a>
+        </li>
         <li class="nav__account"><a href="https://app.thejourneychurchsemo.com" aria-label="My Account">
           <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="12" fill="#FFFFFF"/>
             <circle cx="12" cy="9.3" r="3.35" fill="#3A4522"/>
             <path d="M12 13.9c-3.35 0-6.05 1.95-6.05 4.35v.25a12 12 0 0 0 12.1 0v-.25c0-2.4-2.7-4.35-6.05-4.35Z" fill="#3A4522"/>
-          </svg></a></li>
+          </svg><span class="nav__acctxt">My Account</span></a></li>
     </ul>
   </div>
 </header>
@@ -221,6 +229,6 @@
   </a>
 </div>
 
-<script src="/assets/js/site.js?v=e7c1202e" defer></script>
+<script src="/assets/js/site.js?v=a118fc80" defer></script>
 </body>
 </html>

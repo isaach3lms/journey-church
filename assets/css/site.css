@@ -152,6 +152,9 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 /* Account icon. Icon only; the link is named for screen readers via aria-label. */
 .nav__account a{padding:0 0 0 .55rem;min-width:44px;min-height:44px;justify-content:center}
 .nav__account svg{flex:0 0 auto;display:block;transition:opacity .18s ease}
+/* icon only on desktop; the overlay shows the words too */
+.nav__acctxt{display:none}
+.nav__social{display:none}
 .nav__account a:hover svg{opacity:.82}
 
 /* --- Connect mega menu ----------------------------------------------------
@@ -232,42 +235,10 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   .nav__links .nav__feat:hover .arw{transform:translateX(3px)}
 }
 
-@media (max-width:1080px){
-  .nav__droptog{width:100%;justify-content:space-between;padding:.95rem .25rem;
-    font-size:1.02rem;border-radius:0;border-bottom:1px solid rgba(255,255,255,.16)}
-  .nav__sub{display:none;padding:.35rem 0 .55rem .95rem}
-  .nav__drop.is-open .nav__sub{display:block}
-  .nav__mega{display:block;width:auto;padding:0}
-  .nav__col + .nav__col{margin-top:.9rem}
-  .nav__col h3{font-size:.72rem;font-weight:800;letter-spacing:.13em;
-    text-transform:uppercase;color:rgba(255,255,255,.52);margin:0 0 .15rem}
-  .nav__links .nav__col a{font-size:.98rem;padding:.72rem .25rem;
-    border-bottom:0;color:#E4E7DC}
-  .nav__links .nav__col a[aria-current="page"]{color:var(--amber)}
-  /* the feature card is a desktop flourish; it would only make the
-     hamburger panel taller on a phone */
-  .nav__links .nav__feat{display:none}
-}
 
 .nav__toggle{display:none;background:transparent;border:2px solid rgba(255,255,255,.55);
   border-radius:999px;color:var(--white);padding:.6rem 1.1rem;font-weight:700;font-size:.9rem;min-height:44px}
 
-@media (max-width:1080px){
-  .nav__toggle{display:block}
-  .nav__brand img{height:46px}
-  .nav__links{position:fixed;inset:var(--nav-h) 0 auto;flex-direction:column;align-items:stretch;gap:0;
-    background:var(--olive);padding:.5rem var(--gut) 1.75rem;transform:translateY(-120%);
-    transition:transform .32s cubic-bezier(.2,.7,.3,1);max-height:calc(100dvh - var(--nav-h));overflow-y:auto}
-  .nav__links.is-open{transform:translateY(0)}
-  .nav__links a{padding:.95rem .25rem;font-size:1.02rem;border-radius:0;
-    border-bottom:1px solid rgba(255,255,255,.16)}
-  .nav__links li:last-child a{border-bottom:none}
-  .nav__links a.btn{--cut:18px;margin:1rem 0 0;justify-content:center;
-    border-radius:999px 0 0 999px}
-  .nav__account a{padding:.8rem .25rem;border-bottom:none;justify-content:flex-start}
-  .nav.is-menu-open::before{height:100%;background:rgba(22,29,13,.97)}
-  .nav__links{box-shadow:0 18px 30px rgba(0,0,0,.3)}
-}
 
 /* --- Hero ----------------------------------------------------------------- */
 .hero{position:relative;min-height:min(88svh,780px);display:flex;align-items:center;
@@ -584,3 +555,91 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .glance li{display:flex;gap:.8rem;align-items:flex-start;line-height:1.55;
   font-weight:600;font-size:1.02rem}
 .glance svg{flex:0 0 auto;width:21px;height:21px;margin-top:.2rem;color:var(--amber)}
+
+@media (max-width:1080px){
+  .nav__brand img{height:46px}
+  /* the brand and the toggle sit above the overlay, like the reference */
+  .nav__brand,.nav__toggle{position:relative;z-index:2}
+
+  .nav__toggle{display:flex;align-items:center;justify-content:center;
+    width:46px;height:46px;padding:0;border:0;background:transparent;color:var(--white)}
+  .nav__toggle .ico{display:block}
+  .nav__toggle .ico--close{display:none}
+  .nav__toggle[aria-expanded="true"] .ico--menu{display:none}
+  .nav__toggle[aria-expanded="true"] .ico--close{display:block}
+
+  /* --- Full-screen centred overlay ---------------------------------------
+     One olive field, no dividers, tiers separated by space rather than
+     rules: primary links, then the Connect group, then social and account. */
+  .nav__links{
+    position:fixed;inset:0;z-index:1;
+    flex-direction:column;align-items:center;justify-content:flex-start;gap:0;
+    background:var(--olive);text-align:center;
+    padding:calc(var(--nav-h) + clamp(1.25rem,5vh,3rem)) var(--gut) 2.5rem;
+    overflow-y:auto;overscroll-behavior:contain;
+    transform:translateY(-100%);opacity:0;visibility:hidden;
+    transition:transform .34s cubic-bezier(.2,.7,.3,1),opacity .22s ease,visibility .34s;
+    box-shadow:none;
+  }
+  .nav__links.is-open{transform:none;opacity:1;visibility:visible}
+  .nav__links > li{width:100%}
+
+  /* primary tier */
+  .nav__links > li > a{
+    display:flex;justify-content:center;align-items:center;
+    padding:.72rem .25rem;min-height:48px;border-bottom:0;border-radius:0;
+    font-size:1.05rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  }
+  /* Give Online moves up beside the other primary links and drops the pill:
+     a lone gold button in a centred stack fights the flow. */
+  .nav__give{order:2}
+  .nav__links a.btn{margin:0;padding:.72rem .25rem;min-height:48px;
+    background:transparent;color:var(--amber)}
+  .nav__links a.btn::before{display:none}
+  .nav__links a.btn:hover{color:var(--amber)}
+
+  /* Connect group, always open. An accordion control in a centred stack
+     reads as a widget; the reference flows as plain tiers instead. */
+  .nav__drop{order:3;margin-top:clamp(1.4rem,4vh,2.3rem)}
+  .nav__droptog{display:none}
+  .nav__sub{display:block;padding:0;background:none;box-shadow:none}
+  .nav__mega{display:block;width:auto;padding:0}
+  .nav__col + .nav__col{margin-top:1.35rem}
+  .nav__col h3{font-size:.7rem;font-weight:800;letter-spacing:.17em;
+    text-transform:uppercase;color:rgba(255,255,255,.62);margin:0 0 .1rem}
+  .nav__links .nav__col a{display:flex;justify-content:center;align-items:center;
+    min-height:46px;padding:.55rem .25rem;border-bottom:0;
+    font-size:1rem;font-weight:600;letter-spacing:0;text-transform:none;color:#DCE0D4}
+  .nav__links .nav__col a[aria-current="page"]{color:var(--amber)}
+  .nav__links .nav__feat{display:none}
+
+  .nav__social{order:4;display:flex;justify-content:center;gap:.4rem;
+    margin-top:clamp(1.6rem,5vh,2.6rem)}
+  .nav__links .nav__social a{display:flex;align-items:center;justify-content:center;
+    width:48px;height:48px;min-height:48px;padding:0;border-radius:50%;border-bottom:0;
+    color:var(--white)}
+  .nav__social svg{width:21px;height:21px;fill:currentColor}
+  .nav__links .nav__social a:hover{color:var(--amber);background:rgba(255,255,255,.08)}
+
+  .nav__account{order:5;margin-top:.9rem}
+  .nav__acctxt{display:inline}
+  .nav__links .nav__account a{display:flex;justify-content:center;align-items:center;gap:.6rem;
+    min-height:48px;padding:.5rem .25rem;border-bottom:0;
+    font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none;color:#DCE0D4}
+  .nav__account svg{width:24px;height:24px}
+  .nav__links .nav__account a:hover{color:var(--amber)}
+
+  /* the bar behind the overlay matches it exactly, so there is no seam */
+  .nav.is-menu-open::before{height:100%;background:var(--olive)}
+
+  /* The Plan A Visit tab is z-index 120, above the header, so it would
+     float on top of the open overlay. Body class, because .nh is a sibling
+     of the header and cannot be reached from .nav. */
+  body.is-menu-open .nh{opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .2s ease,visibility .2s}
+
+  /* Give Online is amber as the CTA, so the current page needs a second
+     signal or the two ambers are indistinguishable on the homepage. */
+  .nav__links > li > a[aria-current="page"]{
+    text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px}
+}

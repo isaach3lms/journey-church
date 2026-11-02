@@ -33,9 +33,10 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
         if (links.classList.contains("is-open")) {
           links.classList.remove("is-open");
           nav.classList.remove("is-menu-open");
+          document.body.classList.remove("is-menu-open");
           if (toggle) {
             toggle.setAttribute("aria-expanded", "false");
-            toggle.textContent = "Menu";
+            toggle.setAttribute("aria-label", "Open menu");
           }
         }
       }
@@ -46,16 +47,18 @@ var FORM_ENDPOINT = "https://api.web3forms.com/submit";
     toggle.addEventListener("click", function () {
       var open = links.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.textContent = open ? "Close" : "Menu";
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
       nav.classList.toggle("is-menu-open", open);
+      document.body.classList.toggle("is-menu-open", open);
       if (!open) closeDrops();
     });
     links.addEventListener("click", function (e) {
       if (e.target.closest && e.target.closest("a")) {
         links.classList.remove("is-open");
         nav.classList.remove("is-menu-open");
+        document.body.classList.remove("is-menu-open");
         toggle.setAttribute("aria-expanded", "false");
-        toggle.textContent = "Menu";
+        toggle.setAttribute("aria-label", "Open menu");
         closeDrops();
       }
     });
