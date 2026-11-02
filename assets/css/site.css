@@ -416,6 +416,27 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .foot__nav a{display:flex;align-items:center;min-height:48px;padding:.5rem .4rem;text-decoration:none;
   font-weight:700;font-size:1rem;transition:color .18s ease}
 .foot__nav a:hover{color:var(--amber)}
+/* --- Legal / policy pages -------------------------------------------------
+   Long-form text. Section headings and lists need their own rhythm, since
+   .prose only covers paragraphs elsewhere on the site.                    */
+.legal h2{font-size:clamp(1.35rem,2.1vw,1.6rem);margin:2.9rem 0 1rem}
+.legal h2:first-of-type{margin-top:0}
+.legal h3{font-size:1.04rem;margin:1.9rem 0 .6rem}
+.legal p{margin:0 0 1.2em;line-height:1.75}
+.legal ul{margin:0 0 1.35em;padding-left:1.3rem}
+.legal li{margin:0 0 .6em;line-height:1.72}
+.legal li:last-child{margin-bottom:0}
+.legal a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:var(--line);font-weight:600}
+.legal a:hover{text-decoration-color:var(--amber-dark)}
+.legal__date{color:var(--muted);font-size:.97rem;margin:0 0 2.6rem}
+
+/* privacy / terms line under the copyright */
+.foot__legal{margin:.85rem 0 0}
+.foot__legal a{color:#A8ADB3;text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:rgba(255,255,255,.26);transition:color .18s ease}
+.foot__legal a:hover{color:var(--amber)}
+
 .foot__base{color:#A8ADB3;font-size:.95rem}
 .foot__base p{margin:0 0 .4rem}
 
