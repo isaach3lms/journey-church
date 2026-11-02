@@ -286,18 +286,34 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .video{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--ink)}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
-/* --- Ministry cards ------------------------------------------------------- */
-.cards{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:2.5rem}
-@media (min-width:640px){.cards{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:960px){.cards{grid-template-columns:repeat(3,1fr)}}
-.cards--2{margin-top:1.25rem;grid-template-columns:1fr}
-@media (min-width:760px){.cards--2{grid-template-columns:repeat(2,1fr)}}
-.card{border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--white);
-  display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(15,23,42,.13)}
-.card__img{margin:14px 14px 0;border-radius:4px;overflow:hidden}
-.card__img img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.card__label{padding:1rem 1.15rem 1.2rem}
+/* --- Ministry cards -------------------------------------------------------
+   Photo with the team name laid over it, copy beneath, then a secondary
+   button. No border: the photo's own rounded edge is the card edge.
+   Buttons are pushed to the bottom so they line up across a row whatever
+   the copy length.                                                         */
+.mcards{display:grid;gap:clamp(1.9rem,3vw,2.6rem);grid-template-columns:1fr;
+  margin-top:2.75rem;text-align:left}
+@media (min-width:700px){.mcards{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1040px){.mcards{grid-template-columns:repeat(3,1fr)}}
+
+.mcard{display:flex;flex-direction:column}
+.mcard__fig{position:relative;margin:0;border-radius:14px;overflow:hidden}
+.mcard__fig img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;
+  object-position:center var(--pos,40%);transition:transform .55s cubic-bezier(.2,.7,.3,1)}
+/* --pos is set per photo in the markup: a 4:3 window out of a portrait
+   source cuts faces unless each one says where its subject sits. */
+.mcard:hover .mcard__fig img{transform:scale(1.045)}
+/* the name has to stay legible whatever the photo does underneath it */
+.mcard__fig::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(10,14,6,.74) 0%,rgba(10,14,6,.3) 36%,rgba(10,14,6,0) 64%)}
+.mcard__name{position:absolute;z-index:2;
+  left:clamp(1.05rem,2vw,1.5rem);bottom:clamp(.85rem,1.8vw,1.2rem);right:1rem;
+  margin:0;color:var(--white);font-size:clamp(1.45rem,2.1vw,1.85rem);
+  font-weight:800;letter-spacing:-.028em;line-height:1.06;
+  text-shadow:0 2px 14px rgba(0,0,0,.42)}
+.mcard__copy{margin:1.15rem 0 1.4rem;font-size:1.02rem;line-height:1.65;
+  color:var(--ink);text-wrap:pretty}
+.mcard .btn{align-self:flex-start;margin-top:auto}
 
 /* --- Link cards ----------------------------------------------------------- */
 .lcards{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:2.5rem}
