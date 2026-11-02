@@ -7,8 +7,10 @@
     "node": ">=20"
   },
   "scripts": {
+    "prestart": "node tools/stamp.js",
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node tools/stamp.js && node server.js",
+    "stamp": "node tools/stamp.js"
   },
   "dependencies": {
     "compression": "^1.7.5",

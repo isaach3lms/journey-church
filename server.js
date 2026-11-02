@@ -44,7 +44,11 @@ const PRIVATE = new Set([
   "/.gitignore",
 ]);
 app.use((req, res, next) => {
-  if (PRIVATE.has(req.path) || req.path.startsWith("/node_modules")) {
+  if (
+    PRIVATE.has(req.path) ||
+    req.path.startsWith("/node_modules") ||
+    req.path.startsWith("/tools")
+  ) {
     return notFound(res);
   }
   next();
@@ -65,11 +69,16 @@ app.use((req, res, next) => {
 });
 
 /* --- Static files ---------------------------------------------------------
-   Fonts are content-stable, so they get a long cache. Images and CSS get a
-   shorter one so a replaced photo or a colour tweak shows up the same week
-   instead of a year later.                                                  */
+   Fonts never change, so they get a year.
+   Images get a week: a replaced photo keeps its filename, but a stale photo
+   is cosmetic.
+   CSS and JS must NOT get a week. Their filenames carry no content hash, so
+   a cached copy is never re-requested and an edit silently fails to reach
+   anyone who visited before. They revalidate instead: the browser asks every
+   time and gets a ~100-byte 304 when nothing changed.                       */
 const YEAR = 31536000;
 const WEEK = 604800;
+const REVALIDATE = "public, max-age=0, must-revalidate";
 
 app.use(
   "/assets/fonts",
@@ -85,6 +94,11 @@ app.use(
   express.static(path.join(ROOT, "assets"), {
     maxAge: WEEK * 1000,
     fallthrough: true,
+    setHeaders(res, filePath) {
+      if (/\.(css|js)$/i.test(filePath)) {
+        res.setHeader("Cache-Control", REVALIDATE);
+      }
+    },
   })
 );
 
