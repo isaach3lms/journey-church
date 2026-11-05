@@ -315,6 +315,25 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
   color:var(--ink);text-wrap:pretty}
 .mcard .btn{align-self:flex-start;margin-top:auto}
 
+/* --- Bible reading plan ---------------------------------------------------
+   One row per day: numbered marker, date, passage. Built to be edited by
+   hand each month, so the markup stays flat and obvious.                   */
+.rmonth{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;
+  margin:0 0 .35rem;padding-top:.5rem}
+.rmonth h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+.rmonth span{font-size:.78rem;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+.rplan{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.7rem}
+.rplan li{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.2rem);
+  border:1.5px solid var(--line);border-radius:12px;
+  padding:.9rem clamp(1rem,2vw,1.3rem)}
+.rplan__n{flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:50%;background:#EAEEE0;
+  color:var(--olive);font-weight:800;font-size:1rem;font-variant-numeric:tabular-nums}
+.rplan__d{margin:0;font-size:1.06rem;font-weight:700;letter-spacing:-.014em}
+.rplan__p{margin:.12rem 0 0;font-size:1rem;color:var(--muted)}
+.rnote{margin:2rem 0 0;color:var(--muted);font-size:.98rem}
+
 /* --- Link cards ----------------------------------------------------------- */
 .lcards{display:grid;gap:1.25rem;grid-template-columns:1fr;margin-top:2.5rem}
 @media (min-width:760px){.lcards{grid-template-columns:repeat(2,1fr)}}
