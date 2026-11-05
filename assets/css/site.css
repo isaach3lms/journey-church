@@ -319,7 +319,7 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
    One row per day: numbered marker, date, passage. Built to be edited by
    hand each month, so the markup stays flat and obvious.                   */
 .rmonth{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;
-  margin:0 0 .35rem;padding-top:.5rem}
+  margin:clamp(2.4rem,5vw,3.4rem) 0 .35rem}
 .rmonth h2{font-size:clamp(1.5rem,2.6vw,2rem)}
 .rmonth span{font-size:.78rem;font-weight:800;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted)}
