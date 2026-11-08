@@ -323,7 +323,11 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .rmonth h2{font-size:clamp(1.5rem,2.6vw,2rem)}
 .rmonth span{font-size:.78rem;font-weight:800;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted)}
-.rplan{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.7rem}
+/* week divider inside a month */
+.rweek{font-size:.78rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin:2.1rem 0 .85rem}
+.rweek:first-of-type{margin-top:1.5rem}
+.rplan{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
 .rplan li{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.2rem);
   border:1.5px solid var(--line);border-radius:12px;
   padding:.9rem clamp(1rem,2vw,1.3rem)}
