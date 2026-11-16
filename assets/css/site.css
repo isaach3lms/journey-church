@@ -330,7 +330,24 @@ h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.028em;line-height:1.08;tex
 .rplan{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
 .rplan li{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.2rem);
   border:1.5px solid var(--line);border-radius:12px;
-  padding:.9rem clamp(1rem,2vw,1.3rem)}
+  padding:.9rem clamp(1rem,2vw,1.3rem);transition:border-color .18s ease}
+.rplan li:hover{border-color:var(--ink)}
+.rplan__t{flex:1 1 auto;min-width:0}
+/* NIV text is licensed, so the passage opens on Bible Gateway rather than
+   being reproduced here. See the note under the list. */
+.rplan__go{flex:0 0 auto;display:inline-flex;align-items:center;gap:.45rem;
+  min-height:44px;padding:.55rem .9rem;border:1.5px solid var(--line);border-radius:999px;
+  color:var(--ink);text-decoration:none;font-weight:700;font-size:.88rem;white-space:nowrap;
+  transition:border-color .18s ease,background .18s ease}
+.rplan__go:hover{border-color:var(--amber-dark);background:#FFF8E8}
+.rplan__go .arw{transition:transform .18s ease}
+.rplan__go:hover .arw{transform:translateX(3px)}
+@media (max-width:560px){
+  /* the row would squeeze the date at phone width, so the link drops below it */
+  .rplan li{flex-wrap:wrap;row-gap:.65rem}
+  .rplan__t{flex:1 1 60%}
+  .rplan__go{width:100%;justify-content:center}
+}
 .rplan__n{flex:0 0 auto;display:flex;align-items:center;justify-content:center;
   width:44px;height:44px;border-radius:50%;background:#EAEEE0;
   color:var(--olive);font-weight:800;font-size:1rem;font-variant-numeric:tabular-nums}
